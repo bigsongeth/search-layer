@@ -111,89 +111,16 @@
 
 ---
 
-## 给龙虾主人的安装指南
+## 安装
 
-> 这一部分是写给龙虾主人的。
-> 但真正运行时，通常是龙虾先触发这个 skill，再反过来引导主人完成下面这些配置。
-
-### 第一步：把这个技能装进你的龙虾
-
-把你的龙虾 `workspace/skills/` 目录下克隆一份：
+就一件事：**把这个 GitHub 仓库复制到你龙虾的 `skills/search-layer` 目录里。**
 
 ```bash
-cd 你的龙虾workspace路径
+cd 你的龙虾 workspace 路径
 git clone https://github.com/bigsongeth/search-layer.git skills/search-layer
 ```
 
-### 第二步：把这个技能登记到龙虾的技能列表里
-
-打开你的龙虾 `AGENTS.md` 文件，在 `available_skills` 部分加一行：
-
-```markdown
-- name: search-layer
-  description: >
-    Smart multi-source web search. Routes queries to Exa, Grok, or
-    Tavily based on intent. Use when you need to look up current
-    information, official docs, news, or trace GitHub issues.
-  location: skills/search-layer/SKILL.md
-```
-
-加完之后，你的龙虾才知道：当遇到「需要联网搜索」的问题时，可以调用这个技能。
-
-> 如果你是先把 skill 文件交给龙虾，再由龙虾来提醒主人操作，那么龙虾第一次触发 Search Layer 时，应该明确提醒主人完成这一步。
-
-### 第三步：配置你的 API Key
-
-在 `~/.openclaw/credentials/search.json` 里写入你的 Key：
-
-**最简配置（推荐 Grok + Exa）：**
-```json
-{
-  "grok": {
-    "apiUrl": "https://api.x.ai/v1",
-    "apiKey": "你的xAI API Key",
-    "model": "grok-3-fast"
-  },
-  "exa": "你的Exa API Key"
-}
-```
-
-> 如果你用的是其他 OpenAI-compatible 的 Grok 接口，修改 `apiUrl` 和 `model` 为你实际的配置。
-
-**Grok 单独使用（最小配置）：**
-```json
-{
-  "grok": {
-    "apiUrl": "https://api.x.ai/v1",
-    "apiKey": "你的xAI API Key",
-    "model": "grok-3-fast"
-  }
-}
-```
-
-> **账号从哪来？**
-> - **Grok**：<https://console.x.ai/> 注册后创建 API Key
-> - **Exa**：<https://exa.ai/> 注册后创建 API Key
-
-### 第四步：安装依赖
-
-```bash
-cd skills/search-layer
-python3 -m venv .venv
-source .venv/bin/activate
-pip install requests
-```
-
-### 第五步：测试一下
-
-```bash
-source .venv/bin/activate
-python scripts/search.py "今天 AI 有什么大新闻" --mode fast --num 5
-```
-
-看到 JSON 输出里 `results` 有内容，就说明安装成功了。
-
----
+剩下的首次配置（比如注册到 `AGENTS.md`、填写 `credentials/search.json`、安装 `requests`），不在这里写死，而是交给龙虾在第一次触发 Search Layer 时去主动引导主人完成。
 
 ## 目录结构
 
