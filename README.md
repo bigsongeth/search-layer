@@ -113,14 +113,42 @@
 
 ## 安装
 
-就一件事：**把这个 GitHub 仓库复制到你龙虾的 `skills/search-layer` 目录里。**
+不要把这部分理解成“主人手动一步步操作”。
 
-```bash
-cd 你的龙虾 workspace 路径
-git clone https://github.com/bigsongeth/search-layer.git skills/search-layer
+**更推荐的用法是：让龙虾自己完成安装。**
+
+你只需要把下面这段话复制给你的龙虾：
+
+```text
+请帮我安装一个 Search Layer 搜索技能。
+
+目标：把仓库里的 `skills/search-layer` 放进我的 OpenClaw workspace，并确认下面两个文件存在：
+- skills/search-layer/SKILL.md
+- skills/search-layer/scripts/search.py
+
+如果缺少依赖，请安装 Python 的 `requests`。
+
+安装后请至少完成下面这些检查：
+1. 这个技能已经被正确放进 `skills/search-layer`
+2. `skills/search-layer/SKILL.md` 能正常读取
+3. `skills/search-layer/scripts/search.py` 能正常运行
+4. 用一个“最新动态”类 query 和一个“官方资料”类 query 各测试一次，确认都能返回结果
+5. 如果缺少 API key（例如 Grok / Exa），不要假装已经装好，要明确提醒我去补配置
+
+测试重点不是只看命令能不能跑，而是确认：
+1. Fresh 类问题能正常返回近期结果
+2. Evidence 类问题能优先找到可信来源
+3. skill 缺配置时能正确暴露问题，而不是静默失败
+4. 最终我可以直接把这个 skill 交给龙虾正常使用
 ```
 
-剩下的首次配置（比如注册到 `AGENTS.md`、填写 `credentials/search.json`、安装 `requests`），不在这里写死，而是交给龙虾在第一次触发 Search Layer 时去主动引导主人完成。
+如果你的龙虾足够能干，它会自己：
+- 把仓库放进正确目录
+- 检查依赖
+- 跑测试
+- 缺什么就提醒你补什么
+
+也就是说：**README 给主人的，不是操作手册，而是一段发给龙虾的安装请求。**
 
 ## 目录结构
 
