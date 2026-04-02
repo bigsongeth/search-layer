@@ -111,7 +111,10 @@
 
 ---
 
-## 安装指南
+## 给龙虾主人的安装指南
+
+> 这一部分是写给龙虾主人的。
+> 但真正运行时，通常是龙虾先触发这个 skill，再反过来引导主人完成下面这些配置。
 
 ### 第一步：把这个技能装进你的龙虾
 
@@ -122,7 +125,7 @@ cd 你的龙虾workspace路径
 git clone https://github.com/bigsongeth/search-layer.git skills/search-layer
 ```
 
-### 第二步：告诉你的龙虾「我有这个技能了」
+### 第二步：把这个技能登记到龙虾的技能列表里
 
 打开你的龙虾 `AGENTS.md` 文件，在 `available_skills` 部分加一行：
 
@@ -135,7 +138,9 @@ git clone https://github.com/bigsongeth/search-layer.git skills/search-layer
   location: skills/search-layer/SKILL.md
 ```
 
-加完之后，你的龙虾就知道在遇到「需要联网」的问题时，可以调用这个技能。
+加完之后，你的龙虾才知道：当遇到「需要联网搜索」的问题时，可以调用这个技能。
+
+> 如果你是先把 skill 文件交给龙虾，再由龙虾来提醒主人操作，那么龙虾第一次触发 Search Layer 时，应该明确提醒主人完成这一步。
 
 ### 第三步：配置你的 API Key
 
